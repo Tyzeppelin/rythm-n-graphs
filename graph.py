@@ -10,6 +10,12 @@ class Graph:
         self.X = som
         self.U = arcs
 
+    def __eq__(self, other):
+        return self.X == other.X and self.U == other.U
+
+    def __ne__(self, other):
+        return self.X != other.X or self.U != other.U
+
     def printg(self):
         print "X", self.X
         print "U", self.U

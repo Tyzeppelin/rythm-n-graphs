@@ -43,6 +43,7 @@ def complemSansBoucle(g):
     return Graph(g.X, div)
 
 # Transitive Closure AKA Roy-Warshall Algorithm
+# I won't implement the "calcul des puissances" algorithm. Useless.
 def transitiveClosure(g):
     closure = g.U
     for i in g.X:
@@ -53,4 +54,5 @@ def transitiveClosure(g):
                         if (x, y) not in closure:
                             closure.append((x,y))
     return Graph(g.X, closure)
+
 

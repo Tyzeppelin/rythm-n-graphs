@@ -59,3 +59,7 @@ def isAntiTransitive(g):
     return True
 
 # I have no idea how to implement the "Fortement anti transitive" thing
+
+# Chap.5 P.30
+def tauEqui(g1, g2):
+    return transitiveClosure(g1) == transitiveClosure(g2)
