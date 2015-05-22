@@ -13,11 +13,20 @@ class SetUnknownValueException(Exception):
         def __str__(self):
             return repr(self.value)
 
-## Usuals operations on set
+## Usuals operations on set of edges
 
 #Union of 2 sets
 def union(x1, x2):
     return list(set(x1+x2))
+
+# intersection of 2 sets
+def intersect(x1, x2):
+    inter = []
+    for a in x1:
+        for b in x2:
+            if a == b:
+                inter.append(a)
+    return inter
 
 # "Composition" of 2 sets (sounds really weird)
 def compose(x1, x2):

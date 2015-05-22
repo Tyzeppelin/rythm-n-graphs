@@ -87,3 +87,15 @@ def reduit(g):
         i+=1
     Uc.sort()
     return Graph(Xc, Uc)
+
+def ascDesc(g):
+    nc = g.X[:]
+    cfc = []
+    for i in g.X:
+        if i in nc:
+            a = ascNonClasse(i, g, nc)
+            d = descNonClasse(i, g, nc)
+            cfci = intersect(a, d)
+            nc = divide(nc, cfci)
+            cfc.append(cfci)
+    return cfc

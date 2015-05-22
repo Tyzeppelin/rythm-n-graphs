@@ -1,5 +1,6 @@
 
 from graph import *
+from utils import *
 
 # Trouver la fermeture transitive
 def royWarshall(g):
@@ -62,3 +63,29 @@ def foulkes(g):
                             nc.remove(j)
             cfc.append(cfci)
     return cfc
+
+# obtenir les ascendants non classes
+def ascNonClasse(x, g, nc):
+    A = []
+    def ancetre(y):
+        A.append(y)
+        Lpred = intersect(g.pred(y), nc)
+        for z in Lpred:
+            if z not in A:
+                ancetre(z)
+    A = []
+    ancetre(x)
+    return A
+
+# obtenir les descendants non classes
+def descNonClasse(x, g, nc):
+    D = []
+    def fils(y):
+        D.append(y)
+        Lsuc = intersect(g.succ(y), nc)
+        for z in Lsuc:
+            if z not in D:
+                fils(z)
+    D = []
+    fils(x)
+    return D

@@ -37,7 +37,7 @@ class Graph:
         for e1 in self.X:
             ss+="\n"+str(e1)+"|"
             for e2 in self.X:
-                if (e1, e2) in self.U:
+                if (e2, e1) in self.U:
                     ss+="1|"
                 else:
                     ss+=" |"
