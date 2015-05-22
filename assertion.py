@@ -1,6 +1,8 @@
 
-from utils import *
 from graph import *
+from operations import *
+from algorithms import *
+from utils import *
 
 def isEmpty(g):
     return g.U == []
@@ -63,3 +65,11 @@ def isAntiTransitive(g):
 # Chap.5 P.30
 def tauEqui(g1, g2):
     return transitiveClosure(g1) == transitiveClosure(g2)
+
+# Connexite
+def isConnected(g):
+    k, num = tarjan(g, g.X[0])
+    if k == len(g.X):
+        return True
+    else:
+        return False

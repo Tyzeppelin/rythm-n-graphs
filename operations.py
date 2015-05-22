@@ -1,5 +1,7 @@
 
 from graph import *
+from algorithms import *
+from assertion import *
 from utils import *
 
 # Chap.4 P.4
@@ -45,14 +47,21 @@ def complemSansBoucle(g):
 # Transitive Closure AKA Roy-Warshall Algorithm
 # I won't implement the "calcul des puissances" algorithm. Useless.
 def transitiveClosure(g):
-    closure = g.U
-    for i in g.X:
-        for x in g.X:
-            if (x, i) in closure:
-                for y in g.X:
-                    if (i, y) in closure:
-                        if (x, y) not in closure:
-                            closure.append((x,y))
-    return Graph(g.X, closure)
+    return royWarshall(g)
 
-
+# Les composantes connexes
+def cfc(g):
+    if isConnected(g):
+        return [g.X]
+    else:
+        con = []
+        for s in g.X:
+            if containsDepth2(con, s):
+                continue
+            k, num = tarjan(g, s)
+            conS = []
+            for n in g.X:
+                if num[n-1] <= k and num[n-1] != 0:
+                    conS.append(n)
+            con.append(conS)
+        return con

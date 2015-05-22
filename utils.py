@@ -61,3 +61,12 @@ def isDifferent(x1, x2):
         if e in x1:
             return False
     return True
+
+## Others
+
+# True if a is contains in an array containing arrays
+def containsDepth2(arr, a):
+    for e in arr:
+        if a in e:
+            return True
+    return False

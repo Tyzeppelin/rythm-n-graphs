@@ -50,6 +50,15 @@ class Graph:
                 res.append(arc[0])
         return res
 
+    def adja(self, s):
+        adj = []
+        for arc in self.U:
+            if arc[0] == s:
+                adj.append(arc[1])
+            elif arc[1] == s:
+                adj.append(arc[0])
+        return adj
+
 if __name__ == "__main__":
 
     som = [1,2,3,4,5]
