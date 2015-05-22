@@ -14,6 +14,22 @@ class Graph:
         print "X", self.X
         print "U", self.U
 
+    # Totally ineffective method
+    # But I don't want to be smart
+    def matrix(self):
+        ss = " |"
+        for s in self.X:
+            ss+=str(s)+"|"
+        for e1 in self.X:
+            ss+="\n"+str(e1)+"|"
+            for e2 in self.X:
+                if (e1, e2) in self.U:
+                    ss+="1|"
+                else:
+                    ss+=" |"
+        print ss
+
+
     def succ(self, som):
         res = []
         for arc in self.U:
@@ -36,3 +52,4 @@ if __name__ == "__main__":
     g.printg()
     print g.pred(3)
     print g.succ(2)
+    g.matrix()

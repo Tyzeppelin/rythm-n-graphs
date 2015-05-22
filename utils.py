@@ -54,3 +54,10 @@ def isSubset(x1, x2):
         except ValueError:
             return False
     return True
+
+# True if they are completely different
+def isDifferent(x1, x2):
+    for e in x2:
+        if e in x1:
+            return False
+    return True

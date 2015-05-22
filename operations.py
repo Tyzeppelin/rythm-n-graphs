@@ -33,12 +33,24 @@ def transpose(g):
 # Chap.4 P.12
 def complem(g):
     x2 = complet(g.X)
-    return Graph(g.X, divide(x2, g.X))
+    return Graph(g.X, divide(x2, g.U))
 
 # Chap.4 P.12
 def complemSansBoucle(g):
     d = diag(g.X)
     c = complet(g.X)
-    div = divide(divide(c, d), g.X)
+    div = divide(divide(c, d), g.U)
     return Graph(g.X, div)
+
+# Transitive Closure AKA Roy-Warshall Algorithm
+def transitiveClosure(g):
+    closure = g.U
+    for i in g.X:
+        for x in g.X:
+            if (x, i) in closure:
+                for y in g.X:
+                    if (i, y) in closure:
+                        if (x, y) not in closure:
+                            closure.append((x,y))
+    return Graph(g.X, closure)
 
