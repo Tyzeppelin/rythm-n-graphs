@@ -1,4 +1,6 @@
 
+from utils import *
+
 class Graph:
     """
     Un graphe oriente -> G = (X, U)
@@ -15,6 +17,12 @@ class Graph:
 
     def __ne__(self, other):
         return self.X != other.X or self.U != other.U
+
+    def __contains__(self, elt):
+        return elt in self.U
+
+    def not__contains__(self, elt):
+        return elt not in self.U
 
     def printg(self):
         print "X", self.X

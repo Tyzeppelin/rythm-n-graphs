@@ -1,6 +1,7 @@
 
 from graph import *
 
+# Trouver la fermeture transitive
 def royWarshall(g):
     closure = g.U
     for i in g.X:
@@ -12,6 +13,7 @@ def royWarshall(g):
                             closure.append((x,y))
     return Graph(g.X, closure)
 
+# Trouver les connexite d'un pont dans un graphe non-oriente
 def tarjan(g, a):
     p = []
     d = []
@@ -42,3 +44,23 @@ def tarjan(g, a):
                  k = k+1
                  num[i-1] = k
     return k, num
+
+# Obtenir les cfc de G en utilisant G+
+def foulkes(g):
+    gpp = royWarshall(g)
+    nc = g.X[:] # I slice g.X to get a brand new list. Not a reference
+    cfc = []
+    for i in g.X:
+        if i in nc: # calcul de la cfc de i
+            cfci = [i]
+            nc.remove(i)
+            print "g.X", g.X
+            if (i,i) in gpp:
+                for j in g.X[i-1:]:
+                    print 'i', i, ' j', j, ' nc', nc, ' cfci', cfci, ' cfc', cfc
+                    if j in nc:
+                        if (i,j) in gpp and (j,i) in gpp:
+                            cfci.append(j)
+                            nc.remove(j)
+            cfc.append(cfci)
+    return cfc

@@ -23,7 +23,7 @@ if __name__ == "__main__":
     g1 = Graph(X1, U1)
     g1.printg()
     print isConnected(g1)
-    print cfc(g1)
+    print cfcTarjan(g1)
     #a, b =  tarjan(g1, 1)
 
     print "========\n"
@@ -33,6 +33,12 @@ if __name__ == "__main__":
     g2 = Graph(X2, U2)
     g2.printg()
     print isConnected(g2)
-    print tarjan(g2, 1)
-    print tarjan(g2, 5)
-    print cfc(g2)
+    print cfcTarjan(g2)
+
+    print "========\n"
+
+    X3 = [1,2,3,4,5,6]
+    U3 = [(1,2), (2,3), (3,1), (3,4), (3,5), (4,5), (5,4), (6,3)]
+    g3 = Graph(X3, U3)
+    g3.printg()
+    print cfcFoulkes(g3)

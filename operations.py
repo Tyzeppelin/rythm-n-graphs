@@ -49,8 +49,8 @@ def complemSansBoucle(g):
 def transitiveClosure(g):
     return royWarshall(g)
 
-# Les composantes connexes
-def cfc(g):
+# Les composantes connexes pour un graphe non-oriente (Tarjan)
+def cfcTarjan(g):
     if isConnected(g):
         return [g.X]
     else:
@@ -65,3 +65,6 @@ def cfc(g):
                     conS.append(n)
             con.append(conS)
         return con
+
+def cfcFoulkes(g):
+    return foulkes(g)
