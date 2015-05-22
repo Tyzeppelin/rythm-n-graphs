@@ -54,10 +54,8 @@ def foulkes(g):
         if i in nc: # calcul de la cfc de i
             cfci = [i]
             nc.remove(i)
-            print "g.X", g.X
             if (i,i) in gpp:
                 for j in g.X[i-1:]:
-                    print 'i', i, ' j', j, ' nc', nc, ' cfci', cfci, ' cfc', cfc
                     if j in nc:
                         if (i,j) in gpp and (j,i) in gpp:
                             cfci.append(j)

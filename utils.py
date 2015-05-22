@@ -7,6 +7,12 @@ class SetUnionException(Exception):
     def __str__(self):
         return repr(self.value)
 
+class SetUnknownValueException(Exception):
+    def __init__(self, value):
+        self.value = value
+        def __str__(self):
+            return repr(self.value)
+
 ## Usuals operations on set
 
 #Union of 2 sets
@@ -70,3 +76,14 @@ def containsDepth2(arr, a):
         if a in e:
             return True
     return False
+
+# locate in which cfc a vertex is (I know it's not the correct word, I liek it though)
+def locateCfc(cfc, x):
+    i = 1
+    for a in cfc:
+        if x in a:
+            return i
+        else:
+            i += 1
+    raise SetUnknownValueException("I can't locate ", x, " in ", cfc)
+

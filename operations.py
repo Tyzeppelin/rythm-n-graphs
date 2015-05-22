@@ -66,5 +66,24 @@ def cfcTarjan(g):
             con.append(conS)
         return con
 
+# construit les cfc d'un graphe oriente grace a Foulkes
 def cfcFoulkes(g):
     return foulkes(g)
+
+# construit le graphe reduit d'un graphe g
+def reduit(g):
+    cfc = cfcFoulkes(g)
+    n = len(cfc)
+    Xc = range(n+1)[1:]
+    Uc = []
+    i = 1
+    for c in cfc:
+        Ucc = []
+        for x in c:
+            for succ in g.succ(x):
+                j = locateCfc(cfc, succ)
+                Ucc.append((j, i))
+        Uc += list(set(Ucc))
+        i+=1
+    Uc.sort()
+    return Graph(Xc, Uc)
