@@ -1,7 +1,7 @@
 
 from utils import *
 
-class Graph:
+class Graph(object):
     """
     Un graphe oriente -> G = (X, U)
         - X, un ensemble de sommets
@@ -66,6 +66,29 @@ class Graph:
             elif arc[1] == s:
                 adj.append(arc[0])
         return adj
+
+
+class ValuedGraph(Graph):
+    """
+    Graphe value
+    X -> sommets
+    U -> arcs
+    V -> value {}(x, y): v}
+    """
+
+    def __init__(self, som, arc, val):
+        super(ValuedGraph, self).__init__(som, arc)
+        self.V = val
+
+    def getValue(self, edge):
+        try:
+            return self.V[edge]
+        except KeyError:
+            raise UnknownEdgeException("Can't fing the edge ", edge, " in ", self.V)
+
+    def printg(self):
+        print self.X
+        print self.V
 
 if __name__ == "__main__":
 

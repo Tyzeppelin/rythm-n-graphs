@@ -73,3 +73,11 @@ def isConnected(g):
         return True
     else:
         return False
+
+# is a stable set
+def isStable(g, s):
+    for s1 in s:
+        for s2 in s:
+            if (s1, s2) in g or (s2, s1) in g:
+                return False
+    return True

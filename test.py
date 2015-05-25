@@ -72,3 +72,12 @@ if __name__ == "__main__":
 
     print "Q.4 Construire un tau-minimal qui soit un graphe partiel de G"
     print "dunno howto yet"
+
+    print "========\n"
+
+    X6 = [1,2,3,4,5,6]
+    U6 = [(1,2), (1,3), (1,6), (2,3), (2,4), (3,4), (3,6), (4,5), (5,6)]
+    V6 = {(1,2): 7, (1,3): 9, (1,6): 14, (2,3): 10, (2,4): 15, (3,4): 11, (3,6): 2, (4,5): 6, (5,6): 9}
+    vg6 = ValuedGraph(X6, U6, V6)
+    vg6.printg()
+    print mooreDijkstra(vg6)

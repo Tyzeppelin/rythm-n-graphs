@@ -1,17 +1,24 @@
 
 from graph import *
 
-class SetUnionException(Exception):
+class StdException(Exception):
     def __init__(self, value):
         self.value = value
     def __str__(self):
-        return repr(self.value)
+        return repr(self, value)
 
-class SetUnknownValueException(Exception):
+class SetUnionException(StdException):
     def __init__(self, value):
-        self.value = value
-        def __str__(self):
-            return repr(self.value)
+        super(SetUnionException, self).__init__(value)
+
+class SetUnknownValueException(StdException):
+    def __init__(self, value):
+        super(SetUnknownValueException, self).__init__(value)
+
+class UnknownEdgeException(StdException):
+    def __init__(self, value):
+        super(UnknownEdgeException, self).__init__(value)
+
 
 ## Usuals operations on set of edges
 

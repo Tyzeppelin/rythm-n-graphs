@@ -89,3 +89,35 @@ def descNonClasse(x, g, nc):
     D = []
     fils(x)
     return D
+
+# Moore-Dijkstra
+def mooreDijkstra(g):
+    S = [1]
+    L = {1:0}
+    pred = dict()
+
+    for i in g.X[1:]:
+        if (1, i) in g.U:
+            L[i] = g.V[(1,i)]
+            pred[i] = 1
+        else:
+            L[i] = (float("inf"))
+
+    end = False
+
+    while not end:
+        sliced = {k:v for k,v in L.items() if k not in S}
+        # print sliced, S, g.X
+        if min(sliced.values()) == float('inf'):
+            end = True
+        else:
+            i = min(sliced, key=sliced.get)
+            S.append(i)
+            if set(S) == set(g.X):
+                end = True
+            else:
+                for j in divide(g.succ(i), S):
+                    if L[j] > L[i]+g.V[(i,j)]:
+                        L[j] = L[i]+g.V[(i,j)]
+                    pred[j] = i
+    return pred, L
