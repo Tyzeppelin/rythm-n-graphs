@@ -19,6 +19,9 @@ class UnknownEdgeException(StdException):
     def __init__(self, value):
         super(UnknownEdgeException, self).__init__(value)
 
+class CycleBellmanException(StdException):
+    def __init__(self, value):
+        super(CycleBellmanException, self).__init__(value)
 
 ## Usuals operations on set of edges
 

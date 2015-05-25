@@ -88,6 +88,7 @@ def reduit(g):
     Uc.sort()
     return Graph(Xc, Uc)
 
+# construit les cfc avec l'algo ascendant-descendant
 def ascDesc(g):
     nc = g.X[:]
     cfc = []
@@ -99,3 +100,15 @@ def ascDesc(g):
             nc = divide(nc, cfci)
             cfc.append(cfci)
     return cfc
+
+# Les potentiels sont sou la forme (a, b, c)
+# tels que a >= b+c
+def potentielToV(pot):
+    x = []
+    u = []
+    v = {}
+    for (a,b,c) in pot:
+        x+=[a,b]
+        u.append((b,a))
+        v[b,a] = c
+    return ValuedGraph(list(set(x)), u, v)

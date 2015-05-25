@@ -112,3 +112,39 @@ def mooreDijkstra(g):
                 L[j] = L[i]+g.getValue(i,j)
             pred[j] = i
     return pred, L
+
+# Bellman
+def bellman(g):
+    L = [{1:0}]
+    pred = {}
+
+    for i in g.X[1:]:
+        L[0][i] = -float('inf')
+
+    k = 1
+    end = False
+    n = len(g.X)
+
+    while k <= n and not end:
+        L.append({1:0})
+        for i in g.X[1:]:
+            j = 1
+            maxj = -float('inf')
+            for j in g.pred(i):
+                if L[k-1][j]+g.getValue(j,i) > maxj:
+                    maxj = L[k-1][j]+g.getValue(j,i)
+                    break
+            L[k][i] = max (L[k-1][i], maxj)
+            if L[k][i] != L[k-1][i]:
+                pred[i] = j
+        print L[k]
+        if L[k] == L[k-1]:
+            end = True
+        else:
+            k += 1
+    if k == n+1:
+        raise CycleBellmanException("G possede des circuits absorbants")
+    else:
+        return {str(unichr(ke+63)):v for ke,v in L[k].items() if ke not in (1,n)}, pred
+
+
