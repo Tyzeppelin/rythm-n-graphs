@@ -73,18 +73,20 @@ class ValuedGraph(Graph):
     Graphe value
     X -> sommets
     U -> arcs
-    V -> value {}(x, y): v}
+    V -> value {(x, y): v}
     """
 
     def __init__(self, som, arc, val):
         super(ValuedGraph, self).__init__(som, arc)
         self.V = val
 
-    def getValue(self, edge):
-        try:
-            return self.V[edge]
-        except KeyError:
-            raise UnknownEdgeException("Can't fing the edge ", edge, " in ", self.V)
+    def getValue(self, i, j):
+        if (i,j) in self.V.keys():
+            return self.V[(i,j)]
+        elif (j,i) in self.V.keys():
+            return self.V[(j,i)]
+        else:
+            raise UnknownEdgeException("Can't fing the edge ", (i,j), " in ", self.V)
 
     def printg(self):
         print self.X

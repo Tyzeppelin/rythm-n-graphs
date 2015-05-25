@@ -98,26 +98,18 @@ def mooreDijkstra(g):
 
     for i in g.X[1:]:
         if (1, i) in g.U:
-            L[i] = g.V[(1,i)]
+            L[i] = g.getValue(1,i)
             pred[i] = 1
         else:
             L[i] = (float("inf"))
 
-    end = False
-
-    while not end:
+    while not set(S) == set(g.X):
         sliced = {k:v for k,v in L.items() if k not in S}
-        # print sliced, S, g.X
-        if min(sliced.values()) == float('inf'):
-            end = True
-        else:
-            i = min(sliced, key=sliced.get)
-            S.append(i)
-            if set(S) == set(g.X):
-                end = True
-            else:
-                for j in divide(g.succ(i), S):
-                    if L[j] > L[i]+g.V[(i,j)]:
-                        L[j] = L[i]+g.V[(i,j)]
-                    pred[j] = i
+        i = min(sliced, key=sliced.get)
+        S.append(i)
+        for j in g.succ(i):
+            print i, g.succ(i)
+            if L[j] > L[i]+g.getValue(i,j):
+                L[j] = L[i]+g.getValue(i,j)
+            pred[j] = i
     return pred, L
