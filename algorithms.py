@@ -108,7 +108,6 @@ def mooreDijkstra(g):
         i = min(sliced, key=sliced.get)
         S.append(i)
         for j in g.succ(i):
-            print i, g.succ(i)
             if L[j] > L[i]+g.getValue(i,j):
                 L[j] = L[i]+g.getValue(i,j)
             pred[j] = i
