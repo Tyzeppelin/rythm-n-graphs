@@ -110,5 +110,5 @@ def potentielToV(pot):
     for (a,b,c) in pot:
         x+=[a,b]
         u.append((b,a))
-        v[b,a] = c
+        v[(b,a)] = c
     return ValuedGraph(list(set(x)), u, v)

@@ -113,8 +113,8 @@ def mooreDijkstra(g):
             pred[j] = i
     return pred, L
 
-# Bellman
-def bellman(g):
+# Bellman pour l'ordonnancement cad recherche de chemin maximum
+def bellmanOrdo(g):
     L = [{1:0}]
     pred = {}
 
@@ -128,16 +128,16 @@ def bellman(g):
     while k <= n and not end:
         L.append({1:0})
         for i in g.X[1:]:
-            j = 1
+            jmax = 1
             maxj = -float('inf')
             for j in g.pred(i):
                 if L[k-1][j]+g.getValue(j,i) > maxj:
                     maxj = L[k-1][j]+g.getValue(j,i)
-                    break
+                    jmax = j
             L[k][i] = max (L[k-1][i], maxj)
             if L[k][i] != L[k-1][i]:
-                pred[i] = j
-        print L[k]
+                pred[i] = jmax
+        #print L[k]
         if L[k] == L[k-1]:
             end = True
         else:
@@ -145,6 +145,29 @@ def bellman(g):
     if k == n+1:
         raise CycleBellmanException("G possede des circuits absorbants")
     else:
-        return {str(unichr(ke+63)):v for ke,v in L[k].items() if ke not in (1,n)}, pred
+        #return {str(unichr(ke+63)):v for ke,v in L[k].items() if ke!=1}, pred
+        return {ke:v for ke,v in L[k].items() if ke != 1}, pred
 
+#Algo de Ford pour l'ordonnancement
+def fordOrdo(g):
+    L = {1:0}
+    Lold = {}
+    pred = {}
+    for i in g.X[1:]:
+        L[i] = float('inf')
+
+    while Lold != L:
+        for i in g.X[1:]:
+            print i, L
+            Lold = L
+            minj = float('inf')
+            jmin = 0
+            for j in g.pred(i):
+                if minj > L[j]+g.getValue(j,i):
+                    minj = L[j]+g.getValue(j,i)
+                    jmin = j
+                L[i] = min(L[i], minj)
+            if jmin != 0:
+                pred[i] = jmin
+    return L,pred
 
