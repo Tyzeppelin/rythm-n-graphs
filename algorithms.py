@@ -157,8 +157,8 @@ def fordOrdo(g):
         L[i] = float('inf')
 
     while Lold != L:
+        Lold = L
         for i in g.X[1:]:
-            print i, L
             Lold = L
             minj = float('inf')
             jmin = 0
