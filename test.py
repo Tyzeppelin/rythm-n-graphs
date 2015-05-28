@@ -94,3 +94,11 @@ if __name__ == "__main__":
 
     vg6.printg()
     print fordOrdo(vg6)
+
+    print "========\n"
+
+    X8 = [1,2,3,4,5,6,7]
+    U8 = [(1,2), (1,3), (1,4), (1,7), (2,3), (3,4), (3,5), (4,5), (4,6), (5,6), (5,7)]
+    g8 = Graph(X8, U8)
+    g8.printg()
+    print coloration(g8)

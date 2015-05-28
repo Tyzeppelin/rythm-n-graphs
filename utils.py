@@ -49,7 +49,7 @@ def compose(x1, x2):
 
 # Division of 2 sets
 def divide(x1, x2):
-    div = x1
+    div = x1[:]
     for arc in x2:
         if arc in div:
             div.remove(arc)

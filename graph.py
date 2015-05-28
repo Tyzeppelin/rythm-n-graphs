@@ -67,6 +67,12 @@ class Graph(object):
                 adj.append(arc[0])
         return adj
 
+    def maxAdja(self):
+        adj = 0
+        for i in self.X:
+            adj = max(adj, len(self.adja(i)))
+        return adj
+
 
 class ValuedGraph(Graph):
     """

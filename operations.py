@@ -112,3 +112,24 @@ def potentielToV(pot):
         u.append((b,a))
         v[(b,a)] = c
     return ValuedGraph(list(set(x)), u, v)
+
+def coloration(g):
+    k = 2
+    colored = False
+    coloredNodes = {}
+    while not colored:
+        coloredNodes = {1:1}
+        allColors = range(k+1)[1:]
+        for i in g.X[1:]:
+            coloredNeigh = [aa for aa in g.adja(i) if aa in coloredNodes.keys()]
+            available = divide(allColors, [col for node,col in coloredNodes.items() if node in coloredNeigh])
+            if available == []:
+                k+=1
+                break
+            else:
+                coloredNodes[i] = available[0]
+        if len(coloredNodes) == len(g.X):
+            colored = True
+    return k, coloredNodes
+
+
